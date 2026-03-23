@@ -1,0 +1,13 @@
+public static void getPaginatedProducts(Session session, int pageNumber, int pageSize) {
+    String hql = "FROM Product p";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    query.setFirstResult((pageNumber - 1) * pageSize);
+    query.setMaxResults(pageSize);
+    
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== Page " + pageNumber + " (Size: " + pageSize + ") ===");
+    for (Product product : products) {
+        System.out.println(product);
+    }
+}
