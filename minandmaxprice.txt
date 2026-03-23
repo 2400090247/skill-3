@@ -1,0 +1,13 @@
+HQL Query:
+public static void findMinMaxPrice(Session session) {
+    String hql = "SELECT MIN(p.price), MAX(p.price) FROM Product p";
+    Query<Object[]> query = session.createQuery(hql, Object[].class);
+    Object[] result = query.uniqueResult();
+    
+    Double minPrice = (Double) result[0];
+    Double maxPrice = (Double) result[1];
+    
+    System.out.println("\n=== Price Range ===");
+    System.out.println("Minimum Price: $" + minPrice);
+    System.out.println("Maximum Price: $" + maxPrice);
+}
